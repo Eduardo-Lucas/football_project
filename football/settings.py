@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'bootstrapform',
+    
+    'apps.equipes',
 
 
 ]
