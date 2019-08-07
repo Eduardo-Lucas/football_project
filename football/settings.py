@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     
     'apps.equipes',
+    'apps.jogadores',
 
 
 ]
