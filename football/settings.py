@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.equipes',
     'apps.jogadores',
     'apps.moedas',
+    'apps.precos',
 
 
 ]
