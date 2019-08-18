@@ -23,7 +23,8 @@ def concurso_add(request, concurso_id):
             return redirect('concurso_add', concurso_id=concurso.id)
 
     formset = evento_formset(instance=concurso)
-    return render(request, 'concursos/concurso_add.html', {'formset': formset})
+    return render(request, 'concursos/concurso_add.html', {'formset': formset,
+                                                           'concurso': concurso})
 
 
 class ConcursoList(ListView):
