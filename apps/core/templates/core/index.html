@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Bem-Vindo ao Football Project</h1>
+    <table class="table-responsive-sm">
+    <table class="table table-sm table-borderless table-condensed table-hover table-striped">
+        <thead class="thead-dark">
+            <th scope="col" class="text-center">#</th>
+            <th scope="col" class="text-center">logo</th>
+            <th scope="col" class="text-center">nome</th>
+            <th scope="col" class="text-center">nome conhecido</th>
+        </thead>
+        <tbody>
+
+            {% for e in equipes %}
+            <tr>
+                <th class="text-center" scope="row">{{ forloop.counter }}</th>
+                <td class="text-center">
+
+                    <img src="{% if e.foto %}{{ e.foto.url }}{% else %} {% static 'img/no_image.png' %} {% endif %}"
+                         class="img-thumbnail rounded" alt="..."
+                        width="50" height="50">
+                </td>
+                <td class="text-center">
+                    {{e.nome}}
+                </td>
+                <td class="text-center">
+                    {{e.nome_conhecido}}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    </table>
+{% endblock %}

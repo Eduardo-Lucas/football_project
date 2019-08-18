@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-3">
+            <h5>Lista de Equipes</h5>
+        </div>
+        <div class="col-3">
+            <a href="{% url 'equipe_create' %}"
+               class="btn btn-sm btn-outline-success">Criar Novo Equipe
+            </a>
+        </div>
+    </div>
+
+    {% if object_list %}
+        <table class="responsive">
+        <table class="table table-sm table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+              <th class="text-center">Foto</th>
+              <th >Nome</th>
+
+              <th class="text-center">Detalhe</th>
+              <th class="text-center">Atualiza</th>
+              <th class="text-center">Apaga</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+
+            {% for equipe in object_list  %}
+                <tr {% if not equipe.ativo %} class="table-danger" {% endif %}>
+                    <td class="text-center">
+
+                    <img src="{% if equipe.foto %}{{ equipe.foto.url }}{% else %} {% static 'img/no_image.png' %} {% endif %}"
+                         class="img-thumbnail rounded" alt="..."
+                        width="40" height="40">
+                </td>
+                  <td>
+                    {{equipe.nome_conhecido}}
+                      {% if not equipe.ativo %}
+                        <span class="badge badge-pill badge-warning">Inativo</span>
+                      {% endif %}
+                  </td>
+                  
+    
+                  <td class="text-center">
+                      <a href="{% url 'equipe_detail' equipe.id %}"
+                        class="text-info">
+                          <i class="fas fa-eye"></i>
+                      </a>
+                  </td>
+                    
+                  <td class="text-center">
+                      <a href="{% url 'equipe_edit' equipe.id %}"
+                        class="text-warning">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                  </td>
+    
+                  <td class="text-center">
+                      <a href="{% url 'equipe_delete' equipe.id %}"
+                        class="text-danger">
+                      <i class="fas fa-trash-alt"></i>
+                      </a>
+                  </td>
+                </tr>
+            {% endfor %}
+
+
+        </tbody>
+      </table>
+      </table>
+    {% else %}
+        <h3>Sem registros no momento</h3>
+    {% endif %}
+{% endblock %}

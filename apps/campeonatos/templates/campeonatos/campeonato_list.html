@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-3">
+            <h5>Lista de Campeonatos</h5>
+        </div>
+        <div class="col-3">
+            <a href="{% url 'campeonato_create' %}"
+               class="btn btn-sm btn-outline-success">Criar Novo Campeonato
+            </a>
+        </div>
+    </div>
+
+    {% if object_list %}
+        <table class="responsive">
+        <table class="table table-sm table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+              <th >Nome</th>
+              <th class="text-center">País</th>
+              <th class="text-center">Ano</th>
+              <th class="text-center">Esporte</th>
+              <th class="text-center">Detalhe</th>
+              <th class="text-center">Atualiza</th>
+              <th class="text-center">Apaga</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+
+            {% for campeonato in object_list  %}
+                <tr {% if not campeonato.ativo %} class="table-danger" {% endif %}>
+                  <td>
+                    {{campeonato.nome}}
+                      {% if not campeonato.ativo %}
+                        <span class="badge badge-pill badge-warning">Inativo</span>
+                      {% endif %}
+                  </td>
+
+                  <td class="text-center">
+                    <img src="{% if campeonato.pais.foto %}
+                                    {{ campeonato.pais.foto.url }}
+                              {% else %}
+                                    {% static 'img/no_image.png' %}
+                              {% endif %}"
+                         class="img-thumbnail rounded" alt="..."
+                        width="30" height="30">
+                </td>
+
+                  <td class="text-center">
+                    <strong>{{ campeonato.ano }}</strong>
+                  </td>
+
+                  <td class="text-info">
+                      <strong>{{ campeonato.esporte }}</strong>
+                  </td>
+    
+                  <td class="text-center">
+                      <a href="{% url 'campeonato_detail' campeonato.id %}"
+                        class="text-info">
+                          <i class="fas fa-eye"></i>
+                      </a>
+                  </td>
+                    
+                  <td class="text-center">
+                      <a href="{% url 'campeonato_edit' campeonato.id %}"
+                        class="text-warning">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                  </td>
+    
+                  <td class="text-center">
+                      <a href="{% url 'campeonato_delete' campeonato.id %}"
+                        class="text-danger">
+                      <i class="fas fa-trash-alt"></i>
+                      </a>
+                  </td>
+                </tr>
+            {% endfor %}
+
+
+        </tbody>
+      </table>
+      </table>
+    {% else %}
+        <h3>Sem registros no momento</h3>
+    {% endif %}
+{% endblock %}
