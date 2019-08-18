@@ -8,5 +8,6 @@ urlpatterns = [
     path('add', ConcursoCreate.as_view(), name='concurso_create'),
     path('edit/<int:pk>', ConcursoUpdate.as_view(), name='concurso_edit'),
     path('delete/<int:pk>', ConcursoDelete.as_view(), name='concurso_delete'),
+    path('concurso_add/<int:concurso_id>', concurso_add, name='concurso_add'),
 
 ]

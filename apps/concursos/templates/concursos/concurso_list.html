@@ -20,7 +20,7 @@
           <tr>
 
               <th >Concurso</th>
-
+              <th class="text-center">Incluir Jogos</th>
               <th class="text-center">Detalhe</th>
               <th class="text-center">Atualiza</th>
               <th class="text-center">Apaga</th>
@@ -40,6 +40,13 @@
                       {% if not concurso.ativo %}
                         <span class="badge badge-pill badge-warning">Inativo</span>
                       {% endif %}
+                  </td>
+
+                  <td class="text-center">
+                      <a href="{% url 'concurso_add' concurso.id %}"
+                        class="text-info">
+                          <i class="fas fa-futbol"></i>
+                      </a>
                   </td>
 
                   <td class="text-center">
