@@ -10,6 +10,9 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin 
 from apps.equipes.models import Equipe
 
+# TODO Onde conseguir os icones das Equipes
+# https://www.gazetaesportiva.com/campeonatos/brasileiro-serie-a/
+
 
 def equipe_add(request):
     qtd_equipes = Equipe.objects.count()
@@ -41,8 +44,7 @@ class EquipeList(ListView):
         if valor:
             object_list = self.model.objects.filter(
                 Q(nome__icontains=valor) |
-                Q(nome_conhecido__icontains=valor) |
-                Q(divisao__icontains=valor)
+                Q(nome_conhecido__icontains=valor)
             )
         else:
             object_list = self.model.objects.all()

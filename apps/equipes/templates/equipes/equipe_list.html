@@ -3,17 +3,25 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-3">
+        <div class="col-2">
             <h5>Lista de Equipes</h5>
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <a href="{% url 'equipe_add' %}"
-               class="btn btn-sm btn-outline-success">Criar Novo Equipe
+               class="btn btn-sm btn-outline-success">Nova Equipe
             </a>
         </div>
 
         <div class="col-4">
+            <form class="form-inline mt-2 mt-md-0">
+                <div class="container">
+                <input class="form-control mr-sm-2" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Procure por equipes..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="tooltip" data-placement="top" title="" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
 
+        <div class="col-4">
             <!-- pagination -->
             <nav aria-label="Page navigation example">
               <ul class="pagination pagination-sm justify-content-end">
@@ -60,12 +68,13 @@
 
             {% for equipe in object_list  %}
                 <tr {% if not equipe.ativo %} class="table-danger" {% endif %}>
+
                     <td class="text-center">
 
                     <img src="{% if equipe.foto %}{{ equipe.foto.url }}{% else %} {% static 'img/no_image.png' %} {% endif %}"
                          class="img-thumbnail rounded" alt="..."
                         width="40" height="40">
-                </td>
+                    </td>
                   <td>
                     {{equipe.nome}}
                       {% if not equipe.ativo %}
