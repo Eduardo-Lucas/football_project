@@ -6,16 +6,27 @@
         <div class="col-2 text-warning">
             <strong>Concurso: {{concurso.numero}}</strong>
         </div>
-        <div class="col-3 text-warning">
+        <div class="col-2 text-warning">
+            <strong>Quantidade Máxima de Jogos: {{concurso.num_max_jogos}}</strong>
+        </div>
+        <div class="col-2 text-warning">
+            <strong>Cadastrados: {{jogos_cadastrados}}</strong>
+        </div>
+        <div class="col-2 text-warning">
+            <strong>A Cadastrar: {{jogos_a_cadastrar}}</strong>
+        </div>
+        <div class="col-2 text-warning">
             <strong>Abertura: {{concurso.abertura|date:"d/m/Y H:i"}}</strong>
         </div>
-        <div class="col-3 text-danger">
+        <div class="col-2 text-danger">
             <strong>Encerramento: {{concurso.encerramento|date:"d/m/Y H:i"}}</strong>
         </div>
     </div>
     <form method="POST">
         {% csrf_token %}
-        {{ formset|bootstrap }}
+        <div class="col-5">
+        {{ formset|bootstrap}}
+        </div>
         <button type="submit" class="btn btn-outline-primary">Gravar</button>
     </form>
 

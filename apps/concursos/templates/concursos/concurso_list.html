@@ -20,6 +20,7 @@
           <tr>
 
               <th >Concurso</th>
+              <th >Jogos cadastrados</th>
               <th class="text-center">Incluir Jogos</th>
               <th class="text-center">Detalhe</th>
               <th class="text-center">Atualiza</th>
@@ -34,13 +35,18 @@
                 <tr {% if not concurso.ativo %} class="table-danger" {% endif %}>
 
 
-
                   <td>
                     {{concurso.numero}}
+
                       {% if not concurso.ativo %}
                         <span class="badge badge-pill badge-warning">Inativo</span>
                       {% endif %}
                   </td>
+
+                    <td><span class="badge badge-pill badge-warning">
+                        {{concurso.evento_set.count}}
+                        </span>
+                    </td>
 
                   <td class="text-center">
                       <a href="{% url 'concurso_add' concurso.id %}"

@@ -32,3 +32,4 @@ class Evento(models.Model):
     
     class Meta:
         ordering = ['sequencia']
+

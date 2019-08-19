@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h4>Cadastro de Equipes</h4>
+        <span class="badge badge-pill badge-warning">{{qtd_equipes}} cadastradas</span>
+        <div class="row">
+            <div class="col-6 bg-dark text-light">
+            {{ form|bootstrap}}
+                <hr>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-sm btn-outline-primary">Gravar</button>
+    </form>
+{% endblock %}

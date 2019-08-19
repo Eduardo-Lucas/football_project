@@ -8,5 +8,6 @@ urlpatterns = [
     path('add', EquipeCreate.as_view(), name='equipe_create'),
     path('edit/<int:pk>', EquipeUpdate.as_view(), name='equipe_edit'),
     path('delete/<int:pk>', EquipeDelete.as_view(), name='equipe_delete'),
+    path('equipe_add', equipe_add, name='equipe_add'),
     
 ]
